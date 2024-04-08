@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="container">
+        {% if item.status == 0 %}
+            <h1>Sorry item is UnAvialble</h1>
+        {% else %}
+        <!--Item is model name in "views.py" of "MenuItemDetail" class-->
+            <h1>{{ item.meal }}</h1>
+            <h3>{{ item.description }}</h3>
+            <p><b>Price: Rs.{{ item.price }}</b></p>
+        {% endif %}
+    </div> 
+
+{% endblock content %}

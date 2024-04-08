@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <ul class="list-group list-group-flush">
+        <h1>Restaurant Menu</h1>
+            {% for item in meal %}
+                <h2 class="pt-5">{{ item.1 }}</h2>
+                    {% for m in item_list %}
+                        {% if m.meal_type == item.0 %}
+                            {% if m.status == 0 %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center border-0 pd-0">
+                                <a href="{% url 'menu_item_des' m.pk %}"><h3><del>{{ m.meal }}</del></h3></a>
+                                <span class="badge bg-primary rounded-pill">Rs.{{ m.price }}</span>
+                            </li>
+                            <li class="list-group-item pt-0">
+                                <p>{{ m.description }}</p>
+                            </li>
+                            <li>
+                            {% else %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center border-0 pd-0">
+                                <a href="{% url 'menu_item_des' m.pk %}"><h3>{{ m.meal }}</h3></a>
+                                <span class="badge bg-primary rounded-pill">Rs.{{ m.price }}</span>
+                            </li>
+                            <li class="list-group-item pt-0">
+                                <p>{{ m.description }}</p>
+                            </li>
+                            {% endif %}
+                        {% endif %}
+                {% endfor %}
+            {% endfor %}
+    </ul>
+</div>        
+
+{% endblock content %}
